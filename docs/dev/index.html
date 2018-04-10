@@ -1,34 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>PycURL – A Python Interface To The cURL library &mdash; PycURL 7.43.0 documentation</title>
-    
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <title>PycURL – A Python Interface To The cURL library &#8212; PycURL 7.43.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '7.43.0',
+        VERSION:     '7.43.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="PycURL 7.43.0 documentation" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release Notes" href="release-notes.html" /> 
   </head>
   <body>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,18 +39,18 @@
         <li class="right" >
           <a href="release-notes.html" title="Release Notes"
              accesskey="N">next</a> |</li>
-        <li><a href="#">PycURL 7.43.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="pycurl-a-python-interface-to-the-curl-library">
-<h1>PycURL &#8211; A Python Interface To The cURL library<a class="headerlink" href="#pycurl-a-python-interface-to-the-curl-library" title="Permalink to this headline">¶</a></h1>
-<p>PycURL is a Python interface to <a class="reference external" href="http://curl.haxx.se/libcurl/">libcurl</a>, the multiprotocol file
+<h1>PycURL – A Python Interface To The cURL library<a class="headerlink" href="#pycurl-a-python-interface-to-the-curl-library" title="Permalink to this headline">¶</a></h1>
+<p>PycURL is a Python interface to <a class="reference external" href="https://curl.haxx.se/libcurl/">libcurl</a>, the multiprotocol file
 transfer library. Similarly to the <a class="reference external" href="http://docs.python.org/library/urllib.html">urllib</a> Python module,
 PycURL can be used to fetch objects identified by a URL from a Python program.
 Beyond simple fetches however PycURL exposes most of the functionality of
@@ -61,10 +60,10 @@ libcurl, including:</p>
 libcurl, is very fast as well. PycURL <a class="reference external" href="http://stackoverflow.com/questions/15461995/python-requests-vs-pycurl-performance">was benchmarked</a> to be several
 times faster than <a class="reference external" href="http://python-requests.org/">requests</a>.</li>
 <li>Features including multiple protocol support, SSL, authentication and
-proxy options. PycURL supports most of libcurl&#8217;s callbacks.</li>
-<li><a class="reference external" href="http://curl.haxx.se/libcurl/c/libcurl-multi.html">Multi</a> and <a class="reference external" href="http://curl.haxx.se/libcurl/c/libcurl-share.html">share</a> interfaces.</li>
+proxy options. PycURL supports most of libcurl’s callbacks.</li>
+<li><a class="reference external" href="https://curl.haxx.se/libcurl/c/libcurl-multi.html">Multi</a> and <a class="reference external" href="https://curl.haxx.se/libcurl/c/libcurl-share.html">share</a> interfaces.</li>
 <li>Sockets used for network operations, permitting integration of PycURL
-into the application&#8217;s I/O loop (e.g., using <a class="reference external" href="http://www.tornadoweb.org/">Tornado</a>).</li>
+into the application’s I/O loop (e.g., using <a class="reference external" href="http://www.tornadoweb.org/">Tornado</a>).</li>
 </ul>
 <div class="section" id="about-libcurl">
 <h2>About libcurl<a class="headerlink" href="#about-libcurl" title="Permalink to this headline">¶</a></h2>
@@ -79,32 +78,31 @@ resume, http proxy tunneling and more!</li>
 <li>libcurl is highly portable, it builds and works identically on numerous
 platforms, including Solaris, NetBSD, FreeBSD, OpenBSD, Darwin, HPUX, IRIX,
 AIX, Tru64, Linux, UnixWare, HURD, Windows, Amiga, OS/2, BeOs, Mac OS X,
-Ultrix, QNX, OpenVMS, RISC OS, Novell NetWare, DOS and more...</li>
-<li>libcurl is <a class="reference external" href="http://curl.haxx.se/docs/copyright.html">free</a>, <a class="reference external" href="http://curl.haxx.se/libcurl/features.html#thread">thread-safe</a>, <a class="reference external" href="http://curl.haxx.se/libcurl/features.html#ipv6">IPv6 compatible</a>, <a class="reference external" href="http://curl.haxx.se/libcurl/features.html#features">feature rich</a>,
-<a class="reference external" href="http://curl.haxx.se/libcurl/features.html#support">well supported</a>, <a class="reference external" href="http://curl.haxx.se/libcurl/features.html#fast">fast</a>, <a class="reference external" href="http://curl.haxx.se/libcurl/features.html#docs">thoroughly documented</a> and is already used by
-many known, big and successful <a class="reference external" href="http://curl.haxx.se/docs/companies.html">companies</a> and numerous <a class="reference external" href="http://curl.haxx.se/libcurl/using/apps.html">applications</a>.</li>
+Ultrix, QNX, OpenVMS, RISC OS, Novell NetWare, DOS and more…</li>
+<li>libcurl is <a class="reference external" href="https://curl.haxx.se/docs/copyright.html">free</a>, <a class="reference internal" href="thread-safety.html#thread-safety"><span class="std std-ref">thread-safe</span></a>, <a class="reference external" href="https://curl.haxx.se/libcurl/features.html#ipv6">IPv6 compatible</a>, <a class="reference external" href="https://curl.haxx.se/libcurl/features.html#features">feature rich</a>,
+<a class="reference external" href="https://curl.haxx.se/libcurl/features.html#support">well supported</a>, <a class="reference external" href="https://curl.haxx.se/libcurl/features.html#fast">fast</a>, <a class="reference external" href="https://curl.haxx.se/libcurl/features.html#docs">thoroughly documented</a> and is already used by
+many known, big and successful <a class="reference external" href="https://curl.haxx.se/docs/companies.html">companies</a> and numerous <a class="reference external" href="https://curl.haxx.se/libcurl/using/apps.html">applications</a>.</li>
 </ul>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Python 2.6, 2.7 or 3.1 through 3.5.</li>
+<li>Python 2.7 or 3.1 through 3.6.</li>
 <li>libcurl 7.19.0 or better.</li>
 </ul>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>On Unix, PycURL is easiest to install using your operating system&#8217;s package
+<p>On Unix, PycURL is easiest to install using your operating system’s package
 manager. This will also install libcurl and other dependencies as needed.</p>
 <p>Installation via easy_install and pip is also supported:</p>
-<div class="highlight-python"><div class="highlight"><pre>easy_install pycurl
-pip install pycurl
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">pycurl</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
 </pre></div>
 </div>
-<p>If this does not work, please see <a class="reference internal" href="install.html#install"><em>PycURL Installation</em></a>.</p>
-<p>On Windows, use pip to install a binary wheel for Python 2.6, 2.7 or
-3.2 through 3.5:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install pycurl
+<p>If this does not work, please see <a class="reference internal" href="install.html#install"><span class="std std-ref">PycURL Installation</span></a>.</p>
+<p>On Windows, use pip to install a binary wheel for Python 2.7, 3.5 or 3.6:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
 </pre></div>
 </div>
 <p>If not using pip, binary distributions in other formats are available
@@ -113,7 +111,7 @@ pip install pycurl
 <div class="section" id="support">
 <h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
 <p>For support questions, please use <a class="reference external" href="http://cool.haxx.se/mailman/listinfo/curl-and-python">curl-and-python mailing list</a>.
-<a class="reference external" href="http://curl.haxx.se/mail/list.cgi?list=curl-and-python">Mailing list archives</a> are available for your perusal as well.</p>
+<a class="reference external" href="https://curl.haxx.se/mail/list.cgi?list=curl-and-python">Mailing list archives</a> are available for your perusal as well.</p>
 <p>Although not an official support venue, <a class="reference external" href="http://stackoverflow.com/questions/tagged/pycurl">Stack Overflow</a> has been
 popular with PycURL users as well.</p>
 <p>Bugs can be reported <a class="reference external" href="https://github.com/pycurl/pycurl/issues">via GitHub</a>. Please only use GitHub issues when you are
@@ -126,6 +124,7 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-43-0-1-2017-12-07">PycURL 7.43.0.1 - 2017-12-07</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-43-0-2016-02-02">PycURL 7.43.0 - 2016-02-02</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-21-5-2016-01-05">PycURL 7.21.5 - 2016-01-05</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-19-5-3-2015-11-03">PycURL 7.19.5.3 - 2015-11-03</a></li>
@@ -157,11 +156,17 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#file-upload">File Upload</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#setopt-related-issues"><code class="docutils literal"><span class="pre">setopt</span></code>-Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#transfer-related-issues">Transfer-Related Issues</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pycurl.html">pycurl Module Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curlobject.html">Curl Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curlmultiobject.html">CurlMulti Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curlshareobject.html">CurlShare Object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#error-reporting">Error Reporting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="callbacks.html#writefunction">WRITEFUNCTION</a></li>
 <li class="toctree-l2"><a class="reference internal" href="callbacks.html#headerfunction">HEADERFUNCTION</a></li>
 <li class="toctree-l2"><a class="reference internal" href="callbacks.html#readfunction">READFUNCTION</a></li>
@@ -193,9 +198,10 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="files.html">File Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread-safety.html">Thread Safety</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unimplemented.html">Unimplemented Options And Constants</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#data-options"><tt class="docutils literal"><span class="pre">*DATA</span></tt> options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#curlinfo-tls-session"><tt class="docutils literal"><span class="pre">CURLINFO_TLS_SESSION</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#data-options"><code class="docutils literal"><span class="pre">*DATA</span></code> options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#curlinfo-tls-session"><code class="docutils literal"><span class="pre">CURLINFO_TLS_SESSION</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="unimplemented.html#undocumented-symbols">Undocumented symbols</a></li>
 </ul>
 </li>
@@ -206,9 +212,9 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
 
@@ -216,11 +222,11 @@ the cause, you should instead post your inquiry to the mailing list.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">PycURL &#8211; A Python Interface To The cURL library</a><ul>
+<li><a class="reference internal" href="#">PycURL – A Python Interface To The cURL library</a><ul>
 <li><a class="reference internal" href="#about-libcurl">About libcurl</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
@@ -234,29 +240,28 @@ the cause, you should instead post your inquiry to the mailing list.</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="release-notes.html"
                         title="next chapter">Release Notes</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -268,12 +273,12 @@ the cause, you should instead post your inquiry to the mailing list.</p>
         <li class="right" >
           <a href="release-notes.html" title="Release Notes"
              >next</a> |</li>
-        <li><a href="#">PycURL 7.43.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2001-2016 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2001-2017 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>

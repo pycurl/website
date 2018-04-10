@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Internals &#8212; PycURL 7.43.0.1 documentation</title>
+    <title>Thread Safety &#8212; PycURL 7.43.0.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,7 +23,9 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unimplemented Options And Constants" href="unimplemented.html" />
+    <link rel="prev" title="File Handling" href="files.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,6 +37,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="unimplemented.html" title="Unimplemented Options And Constants"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="File Handling"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
@@ -44,16 +52,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="internals">
-<h1>Internals<a class="headerlink" href="#internals" title="Permalink to this headline">¶</a></h1>
-<p>Cleanup sequence:</p>
-<p>x=curl/multi/share</p>
-<p>x.close() -&gt; do_x_close -&gt; util_x_close
-del x -&gt; do_x_dealloc -&gt; util_x_close</p>
-<p>do_* functions are directly invoked by user code.
-They check pycurl object state.</p>
-<p>util_* functions are only invoked by other pycurl C functions.
-They do not check pycurl object state.</p>
+  <div class="section" id="thread-safety">
+<span id="id1"></span><h1>Thread Safety<a class="headerlink" href="#thread-safety" title="Permalink to this headline">¶</a></h1>
+<p>Per <a class="reference external" href="https://curl.haxx.se/libcurl/c/threadsafe.html">libcurl thread safety documentation</a>, libcurl is thread-safe but
+has no internal thread synchronization.</p>
+<p>For Python programs using PycURL, this means:</p>
+<ul class="simple">
+<li>Accessing the same PycURL object from different threads is OK when
+this object is not involved in active transfers, as Python internally
+has a Global Interpreter Lock and only one operating system thread can
+be executing Python code at a time.</li>
+<li>Accessing a PycURL object that is involved in an active transfer from
+Python code <em>inside a libcurl callback for the PycURL object in question</em>
+is OK, because PycURL takes out the appropriate locks.</li>
+<li>Accessing a PycURL object that is involved in an active transfer from
+Python code <em>outside of a libcurl callback for the PycURL object in question</em>
+is unsafe.</li>
+</ul>
+<p>PycURL handles the necessary SSL locks for OpenSSL/LibreSSL, GnuTLS and NSS.</p>
+<p>A special situation exists when libcurl uses the standard C library
+name resolver (i.e., not threaded nor c-ares resolver). By default libcurl
+uses signals for timeouts with the C library resolver, and signals do not
+work properly in multi-threaded programs. When using PycURL objects from
+multiple Python threads <code class="docutils literal"><span class="pre">NOSIGNAL</span></code> option <a class="reference external" href="https://github.com/curl/curl/issues/1003">must be given</a>.</p>
 </div>
 
 
@@ -62,10 +83,16 @@ They do not check pycurl object state.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="files.html"
+                        title="previous chapter">File Handling</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="unimplemented.html"
+                        title="next chapter">Unimplemented Options And Constants</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/internals.rst.txt"
+      <li><a href="_sources/thread-safety.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -92,6 +119,12 @@ They do not check pycurl object state.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="unimplemented.html" title="Unimplemented Options And Constants"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="files.html" title="File Handling"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
