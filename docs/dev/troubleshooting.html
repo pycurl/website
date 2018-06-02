@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Troubleshooting &#8212; PycURL 7.43.0.1 documentation</title>
+    <title>Troubleshooting &#8212; PycURL 7.43.0.2 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '7.43.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -26,8 +18,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pycurl Module Functionality" href="pycurl.html" />
     <link rel="prev" title="PycURL Quick Start" href="quickstart.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -43,7 +34,7 @@
         <li class="right" >
           <a href="quickstart.html" title="PycURL Quick Start"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -60,13 +51,13 @@ PycURL is a thin wrapper around libcurl; libcurl performs most of the
 network operations and transfer-related issues are generally the domain
 of libcurl.</p>
 <div class="section" id="setopt-related-issues">
-<h2><code class="docutils literal"><span class="pre">setopt</span></code>-Related Issues<a class="headerlink" href="#setopt-related-issues" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">setopt</span></code>-Related Issues<a class="headerlink" href="#setopt-related-issues" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> is one method that is used for setting most
 of the libcurl options, as such calls to it can fail in a wide variety
 of ways.</p>
 <div class="section" id="typeerror-invalid-arguments-to-setopt">
-<h3><code class="docutils literal"><span class="pre">TypeError:</span> <span class="pre">invalid</span> <span class="pre">arguments</span> <span class="pre">to</span> <span class="pre">setopt</span></code><a class="headerlink" href="#typeerror-invalid-arguments-to-setopt" title="Permalink to this headline">¶</a></h3>
-<p>This usually means the <em>type</em> of argument passed to <code class="docutils literal"><span class="pre">setopt</span></code> does not
+<h3><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">invalid</span> <span class="pre">arguments</span> <span class="pre">to</span> <span class="pre">setopt</span></code><a class="headerlink" href="#typeerror-invalid-arguments-to-setopt" title="Permalink to this headline">¶</a></h3>
+<p>This usually means the <em>type</em> of argument passed to <code class="docutils literal notranslate"><span class="pre">setopt</span></code> does not
 match what the option expects. Recent versions of PycURL have improved
 error reporting when this happens and they also accept more data types
 (for example tuples in addition to lists). If you are using an old version of
@@ -76,15 +67,15 @@ in question and verifying that the type, structure and format of data
 you are passing matches what the option expects.</p>
 </div>
 <div class="section" id="pycurl-error-1">
-<h3><code class="docutils literal"><span class="pre">pycurl.error:</span> <span class="pre">(1,</span> <span class="pre">'')</span></code><a class="headerlink" href="#pycurl-error-1" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">pycurl.error:</span> <span class="pre">(1,</span> <span class="pre">'')</span></code><a class="headerlink" href="#pycurl-error-1" title="Permalink to this headline">¶</a></h3>
 <p>An exception like this means PycURL accepted the structure and values
 in the option parameter and sent them on to libcurl, and
 libcurl rejected the attempt to set the option.</p>
 <p>Until PycURL implements an error code to symbol mapping,
 you have to perform this mapping by hand. Error codes are
-found in the file <a class="reference external" href="https://github.com/curl/curl/blob/master/include/curl/curl.h#L456">curl.h</a> in libcurl source; look for <code class="docutils literal"><span class="pre">CURLE_OK</span></code>.
-For example, error code 1 means <code class="docutils literal"><span class="pre">CURLE_UNSUPPORTED_PROTOCOL</span></code>.</p>
-<p>libcurl can reject a <code class="docutils literal"><span class="pre">setopt</span></code> call for a variety of reasons of its own,
+found in the file <a class="reference external" href="https://github.com/curl/curl/blob/master/include/curl/curl.h#L456">curl.h</a> in libcurl source; look for <code class="docutils literal notranslate"><span class="pre">CURLE_OK</span></code>.
+For example, error code 1 means <code class="docutils literal notranslate"><span class="pre">CURLE_UNSUPPORTED_PROTOCOL</span></code>.</p>
+<p>libcurl can reject a <code class="docutils literal notranslate"><span class="pre">setopt</span></code> call for a variety of reasons of its own,
 including but not limited to the requested functionality
 <a class="reference external" href="https://github.com/pycurl/pycurl/issues/477">not being compiled in</a> or being not supported with the SSL backend
 being used.</p>
@@ -93,10 +84,10 @@ being used.</p>
 <div class="section" id="transfer-related-issues">
 <h2>Transfer-Related Issues<a class="headerlink" href="#transfer-related-issues" title="Permalink to this headline">¶</a></h2>
 <p>If your issue is transfer-related (timeout, connection failure, transfer
-failure, <code class="docutils literal"><span class="pre">perform</span></code> hangs, etc.) the first step in troubleshooting is
-setting the <code class="docutils literal"><span class="pre">VERBOSE</span></code> flag for the operation. libcurl will then output
+failure, <code class="docutils literal notranslate"><span class="pre">perform</span></code> hangs, etc.) the first step in troubleshooting is
+setting the <code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code> flag for the operation. libcurl will then output
 debugging information as the transfer executes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycurl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycurl</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">curl</span> <span class="o">=</span> <span class="n">pycurl</span><span class="o">.</span><span class="n">Curl</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">curl</span><span class="o">.</span><span class="n">setopt</span><span class="p">(</span><span class="n">curl</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">curl</span><span class="o">.</span><span class="n">setopt</span><span class="p">(</span><span class="n">curl</span><span class="o">.</span><span class="n">URL</span><span class="p">,</span> <span class="s1">&#39;https://www.python.org&#39;</span><span class="p">)</span>
@@ -164,7 +155,7 @@ debugging information as the transfer executes:</p>
 <li>Headers received from the server</li>
 </ul>
 <p>If the verbose output indicates something you believe is incorrect,
-the next step is to perform an identical transfer using <code class="docutils literal"><span class="pre">curl</span></code> command-line
+the next step is to perform an identical transfer using <code class="docutils literal notranslate"><span class="pre">curl</span></code> command-line
 utility and verify that the behavior is PycURL-specific, as in most cases
 it is not. This is also a good time to check the behavior of the latest
 version of libcurl.</p>
@@ -180,9 +171,9 @@ version of libcurl.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Troubleshooting</a><ul>
-<li><a class="reference internal" href="#setopt-related-issues"><code class="docutils literal"><span class="pre">setopt</span></code>-Related Issues</a><ul>
-<li><a class="reference internal" href="#typeerror-invalid-arguments-to-setopt"><code class="docutils literal"><span class="pre">TypeError:</span> <span class="pre">invalid</span> <span class="pre">arguments</span> <span class="pre">to</span> <span class="pre">setopt</span></code></a></li>
-<li><a class="reference internal" href="#pycurl-error-1"><code class="docutils literal"><span class="pre">pycurl.error:</span> <span class="pre">(1,</span> <span class="pre">'')</span></code></a></li>
+<li><a class="reference internal" href="#setopt-related-issues"><code class="docutils literal notranslate"><span class="pre">setopt</span></code>-Related Issues</a><ul>
+<li><a class="reference internal" href="#typeerror-invalid-arguments-to-setopt"><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">invalid</span> <span class="pre">arguments</span> <span class="pre">to</span> <span class="pre">setopt</span></code></a></li>
+<li><a class="reference internal" href="#pycurl-error-1"><code class="docutils literal notranslate"><span class="pre">pycurl.error:</span> <span class="pre">(1,</span> <span class="pre">'')</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#transfer-related-issues">Transfer-Related Issues</a></li>
@@ -205,12 +196,14 @@ version of libcurl.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -232,12 +225,12 @@ version of libcurl.</p>
         <li class="right" >
           <a href="quickstart.html" title="PycURL Quick Start"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2001-2017 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2001-2018 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>

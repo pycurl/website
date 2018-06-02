@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Callbacks &#8212; PycURL 7.43.0.1 documentation</title>
+    <title>Callbacks &#8212; PycURL 7.43.0.2 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '7.43.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -26,8 +18,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="curl Module Functionality" href="curl.html" />
     <link rel="prev" title="CurlShare Object" href="curlshareobject.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -43,7 +34,7 @@
         <li class="right" >
           <a href="curlshareobject.html" title="CurlShare Object"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -56,18 +47,18 @@
 <span id="id1"></span><h1>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h1>
 <p>For more fine-grained control, libcurl allows a number of callbacks to be
 associated with each connection. In pycurl, callbacks are defined using the
-<code class="docutils literal"><span class="pre">setopt()</span></code> method for Curl objects with options <code class="docutils literal"><span class="pre">WRITEFUNCTION</span></code>,
-<code class="docutils literal"><span class="pre">READFUNCTION</span></code>, <code class="docutils literal"><span class="pre">HEADERFUNCTION</span></code>, <code class="docutils literal"><span class="pre">PROGRESSFUNCTION</span></code>,
-<code class="docutils literal"><span class="pre">XFERINFOFUNCTION</span></code>, <code class="docutils literal"><span class="pre">IOCTLFUNCTION</span></code>, or
-<code class="docutils literal"><span class="pre">DEBUGFUNCTION</span></code>. These options correspond to the libcurl options with <code class="docutils literal"><span class="pre">CURLOPT_</span></code>
+<code class="docutils literal notranslate"><span class="pre">setopt()</span></code> method for Curl objects with options <code class="docutils literal notranslate"><span class="pre">WRITEFUNCTION</span></code>,
+<code class="docutils literal notranslate"><span class="pre">READFUNCTION</span></code>, <code class="docutils literal notranslate"><span class="pre">HEADERFUNCTION</span></code>, <code class="docutils literal notranslate"><span class="pre">PROGRESSFUNCTION</span></code>,
+<code class="docutils literal notranslate"><span class="pre">XFERINFOFUNCTION</span></code>, <code class="docutils literal notranslate"><span class="pre">IOCTLFUNCTION</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">DEBUGFUNCTION</span></code>. These options correspond to the libcurl options with <code class="docutils literal notranslate"><span class="pre">CURLOPT_</span></code>
 prefix removed. A callback in pycurl must be either a regular Python
 function, a class method or an extension type function.</p>
 <p>There are some limitations to some of the options which can be used
 concurrently with the pycurl callbacks compared to the libcurl callbacks.
 This is to allow different callback functions to be associated with different
-Curl objects. More specifically, <code class="docutils literal"><span class="pre">WRITEDATA</span></code> cannot be used with
-<code class="docutils literal"><span class="pre">WRITEFUNCTION</span></code>, <code class="docutils literal"><span class="pre">READDATA</span></code> cannot be used with <code class="docutils literal"><span class="pre">READFUNCTION</span></code>,
-<code class="docutils literal"><span class="pre">WRITEHEADER</span></code> cannot be used with <code class="docutils literal"><span class="pre">HEADERFUNCTION</span></code>.
+Curl objects. More specifically, <code class="docutils literal notranslate"><span class="pre">WRITEDATA</span></code> cannot be used with
+<code class="docutils literal notranslate"><span class="pre">WRITEFUNCTION</span></code>, <code class="docutils literal notranslate"><span class="pre">READDATA</span></code> cannot be used with <code class="docutils literal notranslate"><span class="pre">READFUNCTION</span></code>,
+<code class="docutils literal notranslate"><span class="pre">WRITEHEADER</span></code> cannot be used with <code class="docutils literal notranslate"><span class="pre">HEADERFUNCTION</span></code>.
 In practice, these limitations can be overcome by having a
 callback function be a class instance method and rather use the class
 instance attributes to store per object data such as files used in the
@@ -76,20 +67,20 @@ callbacks.</p>
 <div class="section" id="error-reporting">
 <h2>Error Reporting<a class="headerlink" href="#error-reporting" title="Permalink to this headline">¶</a></h2>
 <p>PycURL callbacks are invoked as follows:</p>
-<p>Python application -&gt; <code class="docutils literal"><span class="pre">perform()</span></code> -&gt; libcurl (C code) -&gt; Python callback</p>
+<p>Python application -&gt; <code class="docutils literal notranslate"><span class="pre">perform()</span></code> -&gt; libcurl (C code) -&gt; Python callback</p>
 <p>Because callbacks are invoked by libcurl, they should not raise exceptions
 on failure but instead return appropriate values indicating failure.
 The documentation for individual callbacks below specifies expected success and
 failure return values.</p>
 <p>Unhandled exceptions propagated out of Python callbacks will be intercepted
 by PycURL or the Python runtime. This will fail the callback with a
-generic failure status, in turn failing the <code class="docutils literal"><span class="pre">perform()</span></code> operation.
-A failing <code class="docutils literal"><span class="pre">perform()</span></code> will raise <code class="docutils literal"><span class="pre">pycurl.error</span></code>, but the error code
+generic failure status, in turn failing the <code class="docutils literal notranslate"><span class="pre">perform()</span></code> operation.
+A failing <code class="docutils literal notranslate"><span class="pre">perform()</span></code> will raise <code class="docutils literal notranslate"><span class="pre">pycurl.error</span></code>, but the error code
 used depends on the specific callback.</p>
 <p>Rich context information like exception objects can be stored in various ways,
 for example the following example stores OPENSOCKET callback exception on the
 Curl object:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycurl</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">socket</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycurl</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">socket</span>
 
 <span class="k">class</span> <span class="nc">ConnectionRejected</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
@@ -125,13 +116,13 @@ Curl object:</p>
 <code class="descname">WRITEFUNCTION</code><span class="sig-paren">(</span><em>byte string</em><span class="sig-paren">)</span> &#x2192; number of characters written<a class="headerlink" href="#WRITEFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for writing data. Corresponds to <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_WRITEFUNCTION.html">CURLOPT_WRITEFUNCTION</a>
 in libcurl.</p>
-<p>On Python 3, the argument is of type <code class="docutils literal"><span class="pre">bytes</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">WRITEFUNCTION</span></code> callback may return the number of bytes written.
+<p>On Python 3, the argument is of type <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">WRITEFUNCTION</span></code> callback may return the number of bytes written.
 If this number is not equal to the size of the byte string, this signifies
-an error and libcurl will abort the request. Returning <code class="docutils literal"><span class="pre">None</span></code> is an
+an error and libcurl will abort the request. Returning <code class="docutils literal notranslate"><span class="pre">None</span></code> is an
 alternate way of indicating that the callback has consumed all of the
 string passed to it and, hence, succeeded.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/write_test.py">write_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">WRITEFUNCTION</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/write_test.py">write_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">WRITEFUNCTION</span></code>.</p>
 </dd></dl>
 
 <div class="section" id="example-callbacks-for-document-header-and-body">
@@ -140,7 +131,7 @@ string passed to it and, hence, succeeded.</p>
 Also note that neither callback returns the number of bytes written. For
 WRITEFUNCTION and HEADERFUNCTION callbacks, returning None implies that all
 bytes where written.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">## Callback function invoked when body data is ready</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Callback function invoked when body data is ready</span>
 <span class="k">def</span> <span class="nf">body</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
     <span class="c1"># Print body data to stdout</span>
     <span class="kn">import</span> <span class="nn">sys</span>
@@ -170,13 +161,13 @@ bytes where written.</p>
 <code class="descname">HEADERFUNCTION</code><span class="sig-paren">(</span><em>byte string</em><span class="sig-paren">)</span> &#x2192; number of characters written<a class="headerlink" href="#HEADERFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for writing received headers. Corresponds to
 <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_HEADERFUNCTION.html">CURLOPT_HEADERFUNCTION</a> in libcurl.</p>
-<p>On Python 3, the argument is of type <code class="docutils literal"><span class="pre">bytes</span></code>.</p>
-<p>The <code class="docutils literal"><span class="pre">HEADERFUNCTION</span></code> callback may return the number of bytes written.
+<p>On Python 3, the argument is of type <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">HEADERFUNCTION</span></code> callback may return the number of bytes written.
 If this number is not equal to the size of the byte string, this signifies
-an error and libcurl will abort the request. Returning <code class="docutils literal"><span class="pre">None</span></code> is an
+an error and libcurl will abort the request. Returning <code class="docutils literal notranslate"><span class="pre">None</span></code> is an
 alternate way of indicating that the callback has consumed all of the
 string passed to it and, hence, succeeded.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/header_test.py">header_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">WRITEFUNCTION</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/header_test.py">header_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">WRITEFUNCTION</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -189,11 +180,11 @@ string passed to it and, hence, succeeded.</p>
 libcurl.</p>
 <p>On Python 3, the callback must return either a byte string or a Unicode
 string consisting of ASCII code points only.</p>
-<p>In addition, <code class="docutils literal"><span class="pre">READFUNCTION</span></code> may return <code class="docutils literal"><span class="pre">READFUNC_ABORT</span></code> or
-<code class="docutils literal"><span class="pre">READFUNC_PAUSE</span></code>. See the libcurl documentation for an explanation
+<p>In addition, <code class="docutils literal notranslate"><span class="pre">READFUNCTION</span></code> may return <code class="docutils literal notranslate"><span class="pre">READFUNC_ABORT</span></code> or
+<code class="docutils literal notranslate"><span class="pre">READFUNC_PAUSE</span></code>. See the libcurl documentation for an explanation
 of these values.</p>
 <p>The <a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/examples/file_upload.py">file_upload.py example</a> in the distribution contains example code for
-using <code class="docutils literal"><span class="pre">READFUNCTION</span></code>.</p>
+using <code class="docutils literal notranslate"><span class="pre">READFUNCTION</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -225,10 +216,10 @@ in libcurl.</p>
 <code class="descname">DEBUGFUNCTION</code><span class="sig-paren">(</span><em>debug message type</em>, <em>debug message byte string</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#DEBUGFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for debug information. Corresponds to <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_DEBUGFUNCTION.html">CURLOPT_DEBUGFUNCTION</a>
 in libcurl.</p>
-<p><em>Changed in version 7.19.5.2:</em> The second argument to a <code class="docutils literal"><span class="pre">DEBUGFUNCTION</span></code>
-callback is now of type <code class="docutils literal"><span class="pre">bytes</span></code> on Python 3. Previously the argument was
-of type <code class="docutils literal"><span class="pre">str</span></code>.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/debug_test.py">debug_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">DEBUGFUNCTION</span></code>.</p>
+<p><em>Changed in version 7.19.5.2:</em> The second argument to a <code class="docutils literal notranslate"><span class="pre">DEBUGFUNCTION</span></code>
+callback is now of type <code class="docutils literal notranslate"><span class="pre">bytes</span></code> on Python 3. Previously the argument was
+of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/debug_test.py">debug_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">DEBUGFUNCTION</span></code>.</p>
 </dd></dl>
 
 <div class="section" id="example-debug-callbacks">
@@ -236,7 +227,7 @@ of type <code class="docutils literal"><span class="pre">str</span></code>.</p>
 <p>This example shows how to use the debug callback. The debug message type is
 an integer indicating the type of debug message. The VERBOSE option must be
 enabled for this callback to be invoked.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">debug_type</span><span class="p">,</span> <span class="n">debug_msg</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">debug_type</span><span class="p">,</span> <span class="n">debug_msg</span><span class="p">):</span>
     <span class="nb">print</span> <span class="s2">&quot;debug(</span><span class="si">%d</span><span class="s2">): </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">debug_type</span><span class="p">,</span> <span class="n">debug_msg</span><span class="p">)</span>
 
 <span class="n">c</span> <span class="o">=</span> <span class="n">pycurl</span><span class="o">.</span><span class="n">Curl</span><span class="p">()</span>
@@ -255,12 +246,12 @@ enabled for this callback to be invoked.</p>
 <code class="descname">PROGRESSFUNCTION</code><span class="sig-paren">(</span><em>download total</em>, <em>downloaded</em>, <em>upload total</em>, <em>uploaded</em><span class="sig-paren">)</span> &#x2192; status<a class="headerlink" href="#PROGRESSFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for progress meter. Corresponds to <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_PROGRESSFUNCTION.html">CURLOPT_PROGRESSFUNCTION</a>
 in libcurl.</p>
-<p><code class="docutils literal"><span class="pre">PROGRESSFUNCTION</span></code> receives amounts as floating point arguments to the
-callback. Since libcurl 7.32.0 <code class="docutils literal"><span class="pre">PROGRESSFUNCTION</span></code> is deprecated;
-<code class="docutils literal"><span class="pre">XFERINFOFUNCTION</span></code> should be used instead which receives amounts as
+<p><code class="docutils literal notranslate"><span class="pre">PROGRESSFUNCTION</span></code> receives amounts as floating point arguments to the
+callback. Since libcurl 7.32.0 <code class="docutils literal notranslate"><span class="pre">PROGRESSFUNCTION</span></code> is deprecated;
+<code class="docutils literal notranslate"><span class="pre">XFERINFOFUNCTION</span></code> should be used instead which receives amounts as
 long integers.</p>
-<p><code class="docutils literal"><span class="pre">NOPROGRESS</span></code> option must be set for False libcurl to invoke a
-progress callback, as PycURL by default sets <code class="docutils literal"><span class="pre">NOPROGRESS</span></code> to True.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NOPROGRESS</span></code> option must be set for False libcurl to invoke a
+progress callback, as PycURL by default sets <code class="docutils literal notranslate"><span class="pre">NOPROGRESS</span></code> to True.</p>
 </dd></dl>
 
 </div>
@@ -271,16 +262,16 @@ progress callback, as PycURL by default sets <code class="docutils literal"><spa
 <code class="descname">XFERINFOFUNCTION</code><span class="sig-paren">(</span><em>download total</em>, <em>downloaded</em>, <em>upload total</em>, <em>uploaded</em><span class="sig-paren">)</span> &#x2192; status<a class="headerlink" href="#XFERINFOFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for progress meter. Corresponds to <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_XFERINFOFUNCTION.html">CURLOPT_XFERINFOFUNCTION</a>
 in libcurl.</p>
-<p><code class="docutils literal"><span class="pre">XFERINFOFUNCTION</span></code> receives amounts as long integers.</p>
-<p><code class="docutils literal"><span class="pre">NOPROGRESS</span></code> option must be set for False libcurl to invoke a
-progress callback, as PycURL by default sets <code class="docutils literal"><span class="pre">NOPROGRESS</span></code> to True.</p>
+<p><code class="docutils literal notranslate"><span class="pre">XFERINFOFUNCTION</span></code> receives amounts as long integers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NOPROGRESS</span></code> option must be set for False libcurl to invoke a
+progress callback, as PycURL by default sets <code class="docutils literal notranslate"><span class="pre">NOPROGRESS</span></code> to True.</p>
 </dd></dl>
 
 <div class="section" id="example-download-upload-progress-callback">
 <h3>Example: Download/upload progress callback<a class="headerlink" href="#example-download-upload-progress-callback" title="Permalink to this headline">¶</a></h3>
 <p>This example shows how to use the progress callback. When downloading a
 document, the arguments related to uploads are zero, and vice versa.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">## Callback function invoked when download/upload has progress</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Callback function invoked when download/upload has progress</span>
 <span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="n">download_t</span><span class="p">,</span> <span class="n">download_d</span><span class="p">,</span> <span class="n">upload_t</span><span class="p">,</span> <span class="n">upload_d</span><span class="p">):</span>
     <span class="nb">print</span> <span class="s2">&quot;Total to download&quot;</span><span class="p">,</span> <span class="n">download_t</span>
     <span class="nb">print</span> <span class="s2">&quot;Total downloaded&quot;</span><span class="p">,</span> <span class="n">download_d</span>
@@ -303,32 +294,32 @@ document, the arguments related to uploads are zero, and vice versa.</p>
 <code class="descname">OPENSOCKETFUNCTION</code><span class="sig-paren">(</span><em>purpose</em>, <em>address</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#OPENSOCKETFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for opening sockets. Corresponds to
 <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_OPENSOCKETFUNCTION.html">CURLOPT_OPENSOCKETFUNCTION</a> in libcurl.</p>
-<p><em>purpose</em> is a <code class="docutils literal"><span class="pre">SOCKTYPE_*</span></code> value.</p>
-<p><em>address</em> is a <a class="reference external" href="https://docs.python.org/library/collections.html#collections.namedtuple">namedtuple</a> with <code class="docutils literal"><span class="pre">family</span></code>, <code class="docutils literal"><span class="pre">socktype</span></code>, <code class="docutils literal"><span class="pre">protocol</span></code>
-and <code class="docutils literal"><span class="pre">addr</span></code> fields, per <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_OPENSOCKETFUNCTION.html">CURLOPT_OPENSOCKETFUNCTION</a> documentation.</p>
+<p><em>purpose</em> is a <code class="docutils literal notranslate"><span class="pre">SOCKTYPE_*</span></code> value.</p>
+<p><em>address</em> is a <a class="reference external" href="https://docs.python.org/library/collections.html#collections.namedtuple">namedtuple</a> with <code class="docutils literal notranslate"><span class="pre">family</span></code>, <code class="docutils literal notranslate"><span class="pre">socktype</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code>
+and <code class="docutils literal notranslate"><span class="pre">addr</span></code> fields, per <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_OPENSOCKETFUNCTION.html">CURLOPT_OPENSOCKETFUNCTION</a> documentation.</p>
 <p><em>addr</em> is an object representing the address. Currently the following
 address families are supported:</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">AF_INET</span></code>: <em>addr</em> is a 2-tuple of <code class="docutils literal"><span class="pre">(host,</span> <span class="pre">port)</span></code>.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">AF_INET</span></code>: <em>addr</em> is a 2-tuple of <code class="docutils literal notranslate"><span class="pre">(host,</span> <span class="pre">port)</span></code>.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">AF_INET6</span></code>: <em>addr</em> is a 4-tuple of <code class="docutils literal"><span class="pre">(host,</span> <span class="pre">port,</span> <span class="pre">flow</span> <span class="pre">info,</span> <span class="pre">scope</span> <span class="pre">id)</span></code>.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">AF_INET6</span></code>: <em>addr</em> is a 4-tuple of <code class="docutils literal notranslate"><span class="pre">(host,</span> <span class="pre">port,</span> <span class="pre">flow</span> <span class="pre">info,</span> <span class="pre">scope</span> <span class="pre">id)</span></code>.</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">AF_UNIX</span></code>: <em>addr</em> is a byte string containing path to the Unix socket.</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">AF_UNIX</span></code>: <em>addr</em> is a byte string containing path to the Unix socket.</p>
 <p>Availability: Unix.</p>
 </li>
 </ul>
 <p>This behavior matches that of Python’s <a class="reference external" href="https://docs.python.org/library/socket.html">socket module</a>.</p>
 <p>The callback should return a socket object, a socket file descriptor
-or a Python object with a <code class="docutils literal"><span class="pre">fileno</span></code> property containing the socket
+or a Python object with a <code class="docutils literal notranslate"><span class="pre">fileno</span></code> property containing the socket
 file descriptor.</p>
-<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal"><span class="pre">None</span></code>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
 as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/open_socket_cb_test.py">open_socket_cb_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">OPENSOCKETFUNCTION</span></code>.</p>
-<p><em>Changed in version 7.21.5:</em> Previously, the callback received <code class="docutils literal"><span class="pre">family</span></code>,
-<code class="docutils literal"><span class="pre">socktype</span></code>, <code class="docutils literal"><span class="pre">protocol</span></code> and <code class="docutils literal"><span class="pre">addr</span></code> parameters (<code class="docutils literal"><span class="pre">purpose</span></code> was
-not passed and <code class="docutils literal"><span class="pre">address</span></code> was flattened). Also, <code class="docutils literal"><span class="pre">AF_INET6</span></code> addresses
-were exposed as 2-tuples of <code class="docutils literal"><span class="pre">(host,</span> <span class="pre">port)</span></code> rather than 4-tuples.</p>
-<p><em>Changed in version 7.19.3:</em> <code class="docutils literal"><span class="pre">addr</span></code> parameter added to the callback.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/open_socket_cb_test.py">open_socket_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">OPENSOCKETFUNCTION</span></code>.</p>
+<p><em>Changed in version 7.21.5:</em> Previously, the callback received <code class="docutils literal notranslate"><span class="pre">family</span></code>,
+<code class="docutils literal notranslate"><span class="pre">socktype</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code> and <code class="docutils literal notranslate"><span class="pre">addr</span></code> parameters (<code class="docutils literal notranslate"><span class="pre">purpose</span></code> was
+not passed and <code class="docutils literal notranslate"><span class="pre">address</span></code> was flattened). Also, <code class="docutils literal notranslate"><span class="pre">AF_INET6</span></code> addresses
+were exposed as 2-tuples of <code class="docutils literal notranslate"><span class="pre">(host,</span> <span class="pre">port)</span></code> rather than 4-tuples.</p>
+<p><em>Changed in version 7.19.3:</em> <code class="docutils literal notranslate"><span class="pre">addr</span></code> parameter added to the callback.</p>
 </dd></dl>
 
 </div>
@@ -340,10 +331,10 @@ were exposed as 2-tuples of <code class="docutils literal"><span class="pre">(ho
 <dd><p>Callback for setting socket options. Corresponds to
 <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_CLOSESOCKETFUNCTION.html">CURLOPT_CLOSESOCKETFUNCTION</a> in libcurl.</p>
 <p><em>curlfd</em> is the file descriptor to be closed.</p>
-<p>The callback should return an <code class="docutils literal"><span class="pre">int</span></code>.</p>
-<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal"><span class="pre">None</span></code>
+<p>The callback should return an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
 as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/close_socket_cb_test.py">close_socket_cb_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">CLOSESOCKETFUNCTION</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/close_socket_cb_test.py">close_socket_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">CLOSESOCKETFUNCTION</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -355,11 +346,11 @@ as the value or by calling <a class="reference internal" href="curlobject.html#u
 <dd><p>Callback for setting socket options. Corresponds to <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_SOCKOPTFUNCTION.html">CURLOPT_SOCKOPTFUNCTION</a>
 in libcurl.</p>
 <p><em>curlfd</em> is the file descriptor of the newly created socket.</p>
-<p><em>purpose</em> is a <code class="docutils literal"><span class="pre">SOCKTYPE_*</span></code> value.</p>
-<p>The callback should return an <code class="docutils literal"><span class="pre">int</span></code>.</p>
-<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal"><span class="pre">None</span></code>
+<p><em>purpose</em> is a <code class="docutils literal notranslate"><span class="pre">SOCKTYPE_*</span></code> value.</p>
+<p>The callback should return an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
 as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/sockopt_cb_test.py">sockopt_cb_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">SOCKOPTFUNCTION</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/sockopt_cb_test.py">sockopt_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">SOCKOPTFUNCTION</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -370,19 +361,19 @@ as the value or by calling <a class="reference internal" href="curlobject.html#u
 <code class="descname">SSH_KEYFUNCTION</code><span class="sig-paren">(</span><em>known_key</em>, <em>found_key</em>, <em>match</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#SSH_KEYFUNCTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for known host matching logic. Corresponds to
 <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_SSH_KEYFUNCTION.html">CURLOPT_SSH_KEYFUNCTION</a> in libcurl.</p>
-<p><em>known_key</em> and <em>found_key</em> are instances of <code class="docutils literal"><span class="pre">KhKey</span></code> class which is a
-<a class="reference external" href="https://docs.python.org/library/collections.html#collections.namedtuple">namedtuple</a> with <code class="docutils literal"><span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">keytype</span></code> fields, corresponding to
-libcurl’s <code class="docutils literal"><span class="pre">struct</span> <span class="pre">curl_khkey</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">KhKey</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;KhKey&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;keytype&#39;</span><span class="p">))</span>
+<p><em>known_key</em> and <em>found_key</em> are instances of <code class="docutils literal notranslate"><span class="pre">KhKey</span></code> class which is a
+<a class="reference external" href="https://docs.python.org/library/collections.html#collections.namedtuple">namedtuple</a> with <code class="docutils literal notranslate"><span class="pre">key</span></code> and <code class="docutils literal notranslate"><span class="pre">keytype</span></code> fields, corresponding to
+libcurl’s <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">curl_khkey</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KhKey</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;KhKey&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;keytype&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>On Python 2, the <em>key</em> field of <code class="docutils literal"><span class="pre">KhKey</span></code> is a <code class="docutils literal"><span class="pre">str</span></code>. On Python 3, the
-<em>key</em> field is <code class="docutils literal"><span class="pre">bytes</span></code>. <em>keytype</em> is an <code class="docutils literal"><span class="pre">int</span></code>.</p>
-<p><em>known_key</em> may be <code class="docutils literal"><span class="pre">None</span></code> when there is no known matching host key.</p>
-<p><code class="docutils literal"><span class="pre">SSH_KEYFUNCTION</span></code> callback should return a <code class="docutils literal"><span class="pre">KHSTAT_*</span></code> value.</p>
-<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal"><span class="pre">None</span></code>
+<p>On Python 2, the <em>key</em> field of <code class="docutils literal notranslate"><span class="pre">KhKey</span></code> is a <code class="docutils literal notranslate"><span class="pre">str</span></code>. On Python 3, the
+<em>key</em> field is <code class="docutils literal notranslate"><span class="pre">bytes</span></code>. <em>keytype</em> is an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p><em>known_key</em> may be <code class="docutils literal notranslate"><span class="pre">None</span></code> when there is no known matching host key.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SSH_KEYFUNCTION</span></code> callback should return a <code class="docutils literal notranslate"><span class="pre">KHSTAT_*</span></code> value.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
 as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
-<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/ssh_key_cb_test.py">ssh_key_cb_test.py test</a> shows how to use <code class="docutils literal"><span class="pre">SSH_KEYFUNCTION</span></code>.</p>
+<p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/ssh_key_cb_test.py">ssh_key_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">SSH_KEYFUNCTION</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -438,12 +429,14 @@ as the value or by calling <a class="reference internal" href="curlobject.html#u
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -465,12 +458,12 @@ as the value or by calling <a class="reference internal" href="curlobject.html#u
         <li class="right" >
           <a href="curlshareobject.html" title="CurlShare Object"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2001-2017 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2001-2018 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>

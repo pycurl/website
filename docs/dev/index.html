@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>PycURL – A Python Interface To The cURL library &#8212; PycURL 7.43.0.1 documentation</title>
+    <title>PycURL – A Python Interface To The cURL library &#8212; PycURL 7.43.0.2 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '7.43.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -25,8 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release Notes" href="release-notes.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -39,7 +30,7 @@
         <li class="right" >
           <a href="release-notes.html" title="Release Notes"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -87,7 +78,7 @@ many known, big and successful <a class="reference external" href="https://curl.
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Python 2.7 or 3.1 through 3.6.</li>
+<li>Python 2.7 or 3.4 through 3.6.</li>
 <li>libcurl 7.19.0 or better.</li>
 </ul>
 </div>
@@ -96,13 +87,13 @@ many known, big and successful <a class="reference external" href="https://curl.
 <p>On Unix, PycURL is easiest to install using your operating system’s package
 manager. This will also install libcurl and other dependencies as needed.</p>
 <p>Installation via easy_install and pip is also supported:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">pycurl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="n">pycurl</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
 </pre></div>
 </div>
 <p>If this does not work, please see <a class="reference internal" href="install.html#install"><span class="std std-ref">PycURL Installation</span></a>.</p>
 <p>On Windows, use pip to install a binary wheel for Python 2.7, 3.5 or 3.6:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
 </pre></div>
 </div>
 <p>If not using pip, binary distributions in other formats are available
@@ -124,6 +115,7 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-43-0-2-2018-06-02">PycURL 7.43.0.2 - 2018-06-02</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-43-0-1-2017-12-07">PycURL 7.43.0.1 - 2017-12-07</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-43-0-2016-02-02">PycURL 7.43.0 - 2016-02-02</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes.html#pycurl-7-21-5-2016-01-05">PycURL 7.21.5 - 2016-01-05</a></li>
@@ -146,6 +138,7 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">PycURL Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#retrieving-a-network-resource">Retrieving A Network Resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#working-with-https">Working With HTTPS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#examining-response-headers">Examining Response Headers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#writing-to-a-file">Writing To A File</a></li>
@@ -153,11 +146,12 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#setting-options">Setting Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#examining-response">Examining Response</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#sending-form-data">Sending Form Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#file-upload">File Upload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#file-upload-multipart-post">File Upload - Multipart POST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#file-upload-put">File Upload - PUT</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#setopt-related-issues"><code class="docutils literal"><span class="pre">setopt</span></code>-Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#setopt-related-issues"><code class="docutils literal notranslate"><span class="pre">setopt</span></code>-Related Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#transfer-related-issues">Transfer-Related Issues</a></li>
 </ul>
 </li>
@@ -200,8 +194,8 @@ the cause, you should instead post your inquiry to the mailing list.</p>
 <li class="toctree-l1"><a class="reference internal" href="files.html">File Handling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="thread-safety.html">Thread Safety</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unimplemented.html">Unimplemented Options And Constants</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#data-options"><code class="docutils literal"><span class="pre">*DATA</span></code> options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#curlinfo-tls-session"><code class="docutils literal"><span class="pre">CURLINFO_TLS_SESSION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#data-options"><code class="docutils literal notranslate"><span class="pre">*DATA</span></code> options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unimplemented.html#curlinfo-tls-session"><code class="docutils literal notranslate"><span class="pre">CURLINFO_TLS_SESSION</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="unimplemented.html#undocumented-symbols">Undocumented symbols</a></li>
 </ul>
 </li>
@@ -249,12 +243,14 @@ the cause, you should instead post your inquiry to the mailing list.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -273,12 +269,12 @@ the cause, you should instead post your inquiry to the mailing list.</p>
         <li class="right" >
           <a href="release-notes.html" title="Release Notes"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PycURL 7.43.0.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2001-2017 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2001-2018 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>
