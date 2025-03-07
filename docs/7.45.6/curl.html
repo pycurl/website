@@ -43,10 +43,95 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="curl-module-functionality">
-<h1>curl Module Functionality<a class="headerlink" href="#curl-module-functionality" title="Link to this heading">¶</a></h1>
+  <section id="module-curl">
+<span id="curl-module-functionality"></span><h1>curl Module Functionality<a class="headerlink" href="#module-curl" title="Link to this heading">¶</a></h1>
+<p>A high-level interface to the pycurl extension</p>
 <section id="high-level-curl-object">
 <h2>High Level Curl Object<a class="headerlink" href="#high-level-curl-object" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="curl.Curl">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curl.</span></span><span class="sig-name descname"><span class="pre">Curl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fakeheaders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl" title="Link to this definition">¶</a></dt>
+<dd><p>High-level interface to pycurl functions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.answered">
+<span class="sig-name descname"><span class="pre">answered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.answered" title="Link to this definition">¶</a></dt>
+<dd><p>Did a given check string occur in the last payload?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.body">
+<span class="sig-name descname"><span class="pre">body</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.body" title="Link to this definition">¶</a></dt>
+<dd><p>Return the body from the last response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.close" title="Link to this definition">¶</a></dt>
+<dd><p>Close a session, freeing resources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.get" title="Link to this definition">¶</a></dt>
+<dd><p>Ship a GET request for a specified URL, capture the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.get_info">
+<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.get_info" title="Link to this definition">¶</a></dt>
+<dd><p>Get information about retrieval.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.head">
+<span class="sig-name descname"><span class="pre">head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.head" title="Link to this definition">¶</a></dt>
+<dd><p>Ship a HEAD request for a specified URL, capture the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.header">
+<span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.header" title="Link to this definition">¶</a></dt>
+<dd><p>Return the header from the last response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.info" title="Link to this definition">¶</a></dt>
+<dd><p>Return a dictionary with all info on the last response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cgi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.post" title="Link to this definition">¶</a></dt>
+<dd><p>Ship a POST request to a specified CGI, capture the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.set_option">
+<span class="sig-name descname"><span class="pre">set_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.set_option" title="Link to this definition">¶</a></dt>
+<dd><p>Set an option on the retrieval.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.set_timeout">
+<span class="sig-name descname"><span class="pre">set_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.set_timeout" title="Link to this definition">¶</a></dt>
+<dd><p>Set timeout for a retrieving an object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.set_url">
+<span class="sig-name descname"><span class="pre">set_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.set_url" title="Link to this definition">¶</a></dt>
+<dd><p>Set the base URL to be retrieved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curl.Curl.set_verbosity">
+<span class="sig-name descname"><span class="pre">set_verbosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curl.Curl.set_verbosity" title="Link to this definition">¶</a></dt>
+<dd><p>Set verbosity to 1 to see transactions.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -61,7 +146,25 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">curl Module Functionality</a><ul>
-<li><a class="reference internal" href="#high-level-curl-object">High Level Curl Object</a></li>
+<li><a class="reference internal" href="#high-level-curl-object">High Level Curl Object</a><ul>
+<li><a class="reference internal" href="#curl.Curl"><code class="docutils literal notranslate"><span class="pre">Curl</span></code></a><ul>
+<li><a class="reference internal" href="#curl.Curl.answered"><code class="docutils literal notranslate"><span class="pre">Curl.answered()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.body"><code class="docutils literal notranslate"><span class="pre">Curl.body()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.close"><code class="docutils literal notranslate"><span class="pre">Curl.close()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.get"><code class="docutils literal notranslate"><span class="pre">Curl.get()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.get_info"><code class="docutils literal notranslate"><span class="pre">Curl.get_info()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.head"><code class="docutils literal notranslate"><span class="pre">Curl.head()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.header"><code class="docutils literal notranslate"><span class="pre">Curl.header()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.info"><code class="docutils literal notranslate"><span class="pre">Curl.info()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.post"><code class="docutils literal notranslate"><span class="pre">Curl.post()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.set_option"><code class="docutils literal notranslate"><span class="pre">Curl.set_option()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.set_timeout"><code class="docutils literal notranslate"><span class="pre">Curl.set_timeout()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.set_url"><code class="docutils literal notranslate"><span class="pre">Curl.set_url()</span></code></a></li>
+<li><a class="reference internal" href="#curl.Curl.set_verbosity"><code class="docutils literal notranslate"><span class="pre">Curl.set_verbosity()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,7 +222,7 @@
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2001-2022 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
 </html>

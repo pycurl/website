@@ -310,8 +310,8 @@ address families are supported:</p>
 <p>The callback should return a socket object, a socket file descriptor
 or a Python object with a <code class="docutils literal notranslate"><span class="pre">fileno</span></code> property containing the socket
 file descriptor.</p>
-<p>The callback may be unset by calling <span class="xref std std-ref">setopt</span> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
-as the value or by calling <span class="xref std std-ref">unsetopt</span>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
 <p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/open_socket_cb_test.py">open_socket_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">OPENSOCKETFUNCTION</span></code>.</p>
 <p><em>Changed in version 7.21.5:</em> Previously, the callback received <code class="docutils literal notranslate"><span class="pre">family</span></code>,
 <code class="docutils literal notranslate"><span class="pre">socktype</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code> and <code class="docutils literal notranslate"><span class="pre">addr</span></code> parameters (<code class="docutils literal notranslate"><span class="pre">purpose</span></code> was
@@ -330,8 +330,8 @@ were exposed as 2-tuples of <code class="docutils literal notranslate"><span cla
 <a class="reference external" href="https://curl.haxx.se/libcurl/c/CURLOPT_CLOSESOCKETFUNCTION.html">CURLOPT_CLOSESOCKETFUNCTION</a> in libcurl.</p>
 <p><em>curlfd</em> is the file descriptor to be closed.</p>
 <p>The callback should return an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
-<p>The callback may be unset by calling <span class="xref std std-ref">setopt</span> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
-as the value or by calling <span class="xref std std-ref">unsetopt</span>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
 <p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/close_socket_cb_test.py">close_socket_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">CLOSESOCKETFUNCTION</span></code>.</p>
 </dd></dl>
 
@@ -346,8 +346,8 @@ in libcurl.</p>
 <p><em>curlfd</em> is the file descriptor of the newly created socket.</p>
 <p><em>purpose</em> is a <code class="docutils literal notranslate"><span class="pre">SOCKTYPE_*</span></code> value.</p>
 <p>The callback should return an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
-<p>The callback may be unset by calling <span class="xref std std-ref">setopt</span> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
-as the value or by calling <span class="xref std std-ref">unsetopt</span>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
 <p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/sockopt_cb_test.py">sockopt_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">SOCKOPTFUNCTION</span></code>.</p>
 </dd></dl>
 
@@ -369,8 +369,8 @@ libcurl’s <code class="docutils literal notranslate"><span class="pre">struct<
 <em>key</em> field is <code class="docutils literal notranslate"><span class="pre">bytes</span></code>. <em>keytype</em> is an <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 <p><em>known_key</em> may be <code class="docutils literal notranslate"><span class="pre">None</span></code> when there is no known matching host key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SSH_KEYFUNCTION</span></code> callback should return a <code class="docutils literal notranslate"><span class="pre">KHSTAT_*</span></code> value.</p>
-<p>The callback may be unset by calling <span class="xref std std-ref">setopt</span> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
-as the value or by calling <span class="xref std std-ref">unsetopt</span>.</p>
+<p>The callback may be unset by calling <a class="reference internal" href="curlobject.html#setopt"><span class="std std-ref">setopt</span></a> with <code class="docutils literal notranslate"><span class="pre">None</span></code>
+as the value or by calling <a class="reference internal" href="curlobject.html#unsetopt"><span class="std std-ref">unsetopt</span></a>.</p>
 <p><a class="reference external" href="https://github.com/pycurl/pycurl/blob/master/tests/ssh_key_cb_test.py">ssh_key_cb_test.py test</a> shows how to use <code class="docutils literal notranslate"><span class="pre">SSH_KEYFUNCTION</span></code>.</p>
 </dd></dl>
 
@@ -384,8 +384,8 @@ as the value or by calling <span class="xref std std-ref">unsetopt</span>.</p>
 <a class="reference external" href="https://curl.se/libcurl/c/CURLMOPT_TIMERFUNCTION.html">CURLMOPT_TIMERFUNCTION</a>.</p>
 <p>The application should arrange for a non-repeating timer to fire in
 <code class="docutils literal notranslate"><span class="pre">timeout_ms</span></code> milliseconds, at which point the application should call
-either <span class="xref std std-ref">socket_action</span> or
-<span class="xref std std-ref">perform</span>.</p>
+either <a class="reference internal" href="curlmultiobject.html#multi-socket-action"><span class="std std-ref">socket_action</span></a> or
+<a class="reference internal" href="curlmultiobject.html#multi-perform"><span class="std std-ref">perform</span></a>.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">examples/multi-socket_action-select.py</span></code> for an example program
 that uses the timer function and the socket function.</p>
 </dd></dl>
@@ -406,7 +406,7 @@ Corresponds to <a class="reference external" href="https://curl.se/libcurl/c/CUR
 instance.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">socketp</span></code> (“private socket pointer”) argument, as described in the
 <code class="docutils literal notranslate"><span class="pre">CURLMOPT_SOCKETFUNCTION</span></code> documentation, is set to the value provided
-to the <span class="xref std std-ref">assign</span> method for the corresponding
+to the <a class="reference internal" href="curlmultiobject.html#multi-assign"><span class="std std-ref">assign</span></a> method for the corresponding
 <code class="docutils literal notranslate"><span class="pre">sock_fd</span></code>, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no value was assigned.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">examples/multi-socket_action-select.py</span></code> for an example program
 that uses the timer function and the socket function.</p>
@@ -543,7 +543,7 @@ that uses the timer function and the socket function.</p>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2001-2022 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
 </html>
